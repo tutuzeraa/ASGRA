@@ -1,2 +1,15 @@
-/data/graphs
-/src/datasets/__pycache__
+build/
+dist/
+*.egg-info/
+
+results/
+data/
+cache/
+runs/
+weights/
+analysis/
+src/datasets/__pycache__
+emissions.csv
+configs/tutu_configs/
+scripts/ 
+asgra/exploration/

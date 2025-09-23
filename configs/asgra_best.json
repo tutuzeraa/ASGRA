@@ -1,0 +1,22 @@
+{
+    "dataset": "places8",
+
+    "data_dir": "./data/graphs",
+    "csv_file": "./data/places8.csv",
+    "task": "multiclass",
+
+    "num_classes": 8,
+    "triplet_threshold": 0.1,
+
+    "pretrained_ckpt": "",  
+    "finetune":  "head",  
+
+    "max_epochs":   120,
+    "batch_size":   8,
+    "learning_rate": 0.00012311565882316508,
+    "weight_decay":  3.623660801126816e-05,
+  
+    "hidden_dim":  384,
+    "heads":        4,
+    "num_layers":   2
+}
