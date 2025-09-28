@@ -1,0 +1,3 @@
+[submodule "Pix2Grp"]
+	path = Pix2Grp
+	url = git@github.com:tutuzeraa/Pix2Grp_CVPR2024.git
