@@ -121,7 +121,6 @@ def _evaluate_split(model, loader, device, cfg, top_k=10):
     return acc.compute().item(), rec.compute().item(), f1.compute().item(), bacc, top_ids
 
 def load_pretrained(model, ckpt_path, mode, logger):
-    """Carrega pesos do Places8 e adapta para fine-tuning binário."""
     if not ckpt_path:       
         return
     
@@ -213,7 +212,7 @@ def run_eval(cfg, workers, outdir, weights, split, cache=None, split_override=No
 
     acc, rec, f1, bacc, top_preds = _evaluate_split(model, eval_loader, device, cfg)
 
-    print("IDs with highest score:", top_preds)
+    # print("IDs with highest score:", top_preds)
 
     rep_dir = outdir / "reports"       
     rep_dir.mkdir(parents=True, exist_ok=True)
@@ -229,7 +228,6 @@ def run_kfold(cfg, workers, outdir, cache=None, k=5):
     logger  = setup_logger(outdir, "kfold.log")
     full_ds = build_full_dataset(cfg, cache)
 
-    # rótulos para estratificação
     y_all = torch.tensor([full_ds[idx].y.item() for idx in range(len(full_ds))])
     skf   = StratifiedKFold(n_splits=k, shuffle=True, random_state=42)
     results_dir = outdir / "results"
@@ -251,15 +249,15 @@ def run_kfold(cfg, workers, outdir, cache=None, k=5):
             num_layers   = cfg["num_layers"],
             num_classes  = cfg["num_classes"],
         ).to(device)
-        
-        load_pretrained(model,
-                cfg.get("pretrained_ckpt", ""),
-                cfg.get("finetune", "full"),
-                logger)
+
+        if cfg.get("finetune"): 
+            load_pretrained(model,
+                    cfg.get("pretrained_ckpt", ""),
+                    cfg.get("finetune", "full"),
+                    logger)
     
         lr = cfg["learning_rate"]
         if cfg["finetune"] == "full":
-            print("AQUI")
             lr = 1e-5
 
         optim = torch.optim.AdamW(model.parameters(), lr=lr,
@@ -275,9 +273,8 @@ def run_kfold(cfg, workers, outdir, cache=None, k=5):
                         else F.cross_entropy(logits, batch.y.squeeze()))
                 optim.zero_grad(); loss.backward(); optim.step()
 
-        # ----------- avaliação no fold -------------
         acc, rec, f1, bacc, top_preds = _evaluate_split(model, val_loader, device, cfg)
-        print("IDs with highest score:", top_preds)
+        # print("IDs with highest score:", top_preds)
         logger.info(f"Fold {fold}  ACC {acc:.4f}  REC {rec:.4f}  F1 {f1:.4f} Balanced ACC {bacc:.4f}")
         fold_metrics.append((acc, rec, f1, bacc))
         
@@ -285,7 +282,6 @@ def run_kfold(cfg, workers, outdir, cache=None, k=5):
         fold_ckpt.parent.mkdir(exist_ok=True)
         torch.save(model.state_dict(), fold_ckpt)
 
-    # ---------------- resumo -----------------------
     accs, recs, f1s, baccs = map(np.array, zip(*fold_metrics))
     logger.info("==== 5-fold report ====")
     logger.info("Accuracy           : %.4f ± %.4f", accs.mean(), accs.std())

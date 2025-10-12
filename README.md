@@ -1,6 +1,7 @@
 # ASGRA - Attention over Scene Graphs 🔎🕸️
+[![arXiv](https://img.shields.io/badge/arXiv-2509.26457-b31b1b.svg)](https://arxiv.org/abs/2509.26457)
 
-Framework to leverage Scene Graphs and GAT's to classify indoor scenes. Official implementation of "Attention over Scene Graphs: Indoor Scene Representations Toward CSAI Classification"
+Framework to leverage Scene Graphs and GAT's to classify indoor scenes. Official implementation of "Attention over Scene Graphs: Indoor Scene Representations Toward CSAI Classification", accepted at the 1st Works
 
 
 ## Setup
@@ -36,6 +37,10 @@ See [datasets.md](https://github.com/tutuzeraa/ASGRA/blob/main/asgra/datasets/da
 
 For generating the scene graphs, we utilize this work: [Pix2Grp](https://github.com/SHTUPLUS/Pix2Grp_CVPR2024).
 We did some adaptations to output the scene graphs in the format that we could process. To generate the graphs as we did, follow the instructions in [here](https://github.com/tutuzeraa/Pix2Grp_CVPR2024/tree/a8e9fbb4c4c798c0dd456d1570ff1a524c004a50?tab=readme-ov-file#instructions).
+
+## Weights
+
+You can download the pretrained weights for the places8 dataset in [here](https://huggingface.co/tutuzera/ASGRA/blob/main/asgra_best.pt).
 
 
 ## To run

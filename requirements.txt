@@ -1,0 +1,16 @@
+jinja2
+lightning-utilities
+matplotlib
+networkx
+numpy
+pillow
+pyyaml
+requests
+scikit-learn
+scipy
+sympy
+fsspec
+torchmetrics
+codecarbon
+brotli
+optuna
