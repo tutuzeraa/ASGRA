@@ -1,7 +1,7 @@
 # ASGRA - Attention over Scene Graphs 🔎🕸️
 [![arXiv](https://img.shields.io/badge/arXiv-2509.26457-b31b1b.svg)](https://arxiv.org/abs/2509.26457)
 
-Framework to leverage Scene Graphs and GAT's to classify indoor scenes. Official implementation of "Attention over Scene Graphs: Indoor Scene Representations Toward CSAI Classification", accepted at the 1st Works
+Framework to leverage Scene Graphs and GAT's to classify indoor scenes. Official implementation of "Attention over Scene Graphs: Indoor Scene Representations Toward CSAI Classification", accepted at the 1st Workshop on From Scene Understanding to Human Modeling at the BMVC 2025.
 
 
 ## Setup
