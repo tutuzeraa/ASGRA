@@ -14,3 +14,4 @@ torchmetrics
 codecarbon
 brotli
 optuna
+torch_geometric

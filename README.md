@@ -20,7 +20,7 @@ For installing the framework, run the following commands:
 conda create -n ASGRA python=3.11 pytorch torchvision torchaudio -c pytorch -c nvidia
 conda activate ASGRA 
 python3 setup.py install
-pip install torch_geometric
+pip install -r requirements.txt
 pip install -e .
 ```
 
