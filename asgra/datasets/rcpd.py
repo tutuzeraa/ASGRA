@@ -14,8 +14,6 @@ from pathlib import Path
 import torch
 from torch_geometric.data import Data, Dataset
 
-from data.rcpd_labels import rcpd_csam_labels
-from data.rcpd_split  import rcpd_csam_split
 
 logger = logging.getLogger(__name__)
 
@@ -77,6 +75,11 @@ def normalise(raw: str) -> str:
 
     return t if t else None
 
+def get_labels_split(csv_file):
+    '''
+    '''
+    pass
+
 def _is_in_split(img_key, split):
     key = int(img_key.replace("img_","").replace(".jpg",""))
 
@@ -87,13 +90,15 @@ def _is_in_split(img_key, split):
     )
 
 class RCPDSceneGraphDataset(Dataset):
-    def __init__(self, data_dir, split, cache_file = None):
+    def __init__(self, data_dir, csv_file, split = None, cache_file = None):
         """
         data_dir : directory with the graphs
         split    : 'train' | 'val' | 'test' 
         """
         self.word2idx  = VG150_OBJECTS
         self.rel2idx   = VG150_RELS
+
+        rcpd_csam_labels, rcpd_csam_split = get_labels_split(csv_file)
 
         self.split = split.lower()
 

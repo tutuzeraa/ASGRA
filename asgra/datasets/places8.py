@@ -1,6 +1,7 @@
 '''
 Places8 Dataset
 '''
+import os
 import re
 import json
 import csv
@@ -76,13 +77,7 @@ def normalise(raw: str) -> str:
     return t if t else None
 
 def _graph_key(fp: str) -> str:
-    if fp.startswith("places/data_256/"):
-        return fp[18:]
-    if fp.startswith("places/val_256/"):
-        return fp[17:]
-    if fp.startswith("Places365"):
-        return fp
-    return fp[2:]
+    return os.path.basename(fp)
 
 
 class Places8SceneGraphDataset(Dataset):
@@ -142,9 +137,7 @@ class Places8SceneGraphDataset(Dataset):
                 for line in fh: 
                     js = json.loads(line)
                     key = _graph_key(js["image_id"]["image_id"])
-                    # print("The key is ", key)
                     meta = self._img2meta.get(key)
-                    # print("The meta is ", meta)
                     if not meta:
                         continue
                     scene_label, spl = meta

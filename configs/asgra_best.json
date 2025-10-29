@@ -9,7 +9,7 @@
     "triplet_threshold": 0.1,
 
     "pretrained_ckpt": "",  
-    "finetune":  "head",  
+    "finetune":  "",  
 
     "max_epochs":   120,
     "batch_size":   8,

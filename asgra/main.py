@@ -28,7 +28,7 @@ from models.GATv2 import ASGRA
 
 DATASETS = {
     "places8": lambda cfg, split, cache: Places8SceneGraphDataset(cfg["data_dir"], cfg["csv_file"], cfg["triplet_threshold"], split, cache),
-    "rcpd": lambda cfg, split, cache: RCPDSceneGraphDataset(cfg["data_dir"], split, cache),
+    "rcpd": lambda cfg, split, cache: RCPDSceneGraphDataset(cfg["data_dir"], cfg["csv_file"], split, cache),
 }
 
 
@@ -213,6 +213,10 @@ def run_eval(cfg, workers, outdir, weights, split, cache=None, split_override=No
     acc, rec, f1, bacc, top_preds = _evaluate_split(model, eval_loader, device, cfg)
 
     # print("IDs with highest score:", top_preds)
+    logger.info("Accuracy           : %.4f", acc)
+    logger.info("Recall             : %.4f", rec)
+    logger.info("F1-score           : %.4f", f1)
+    logger.info("Balanced Accuracy  : %.4f", bacc)
 
     rep_dir = outdir / "reports"       
     rep_dir.mkdir(parents=True, exist_ok=True)

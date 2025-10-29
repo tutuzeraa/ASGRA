@@ -11,7 +11,7 @@ First, you must clone the repository:
 ```bash
 git clone git@github.com:tutuzeraa/ASGRA.git ASGRA
 cd ASGRA
-git submodule update --init --recursive  # to use the modified Pix2Grp
+git submodule update --init  # to use the modified Pix2Grp
 ```
 
 For installing the framework, run the following commands:
@@ -19,9 +19,8 @@ For installing the framework, run the following commands:
 ```bash
 conda create -n ASGRA python=3.11 pytorch torchvision torchaudio -c pytorch -c nvidia
 conda activate ASGRA 
-python3 setup.py install
 pip install -r requirements.txt
-pip install -e .
+python3 setup.py install
 ```
 
 ## Datasets

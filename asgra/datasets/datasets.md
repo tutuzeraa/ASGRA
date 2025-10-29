@@ -13,7 +13,7 @@ Places8 is a subset of the Places365 where classes are selected to highlight env
 
 First, you must generate the scene graphs from the Places8 split. This can be done following the instructions in our [Pix2Grp fork](https://github.com/tutuzeraa/Pix2Grp_CVPR2024/tree/a8e9fbb4c4c798c0dd456d1570ff1a524c004a50?tab=readme-ov-file#instructions). After that, move all the generated graphs (jsonl files) to `data/graphs`.
 
-Also, move the places8.csv to `data/`.
+Also, move the `places8.csv` to `data/`.
 
 Note that each line (that represents one image), must be formatted like this:
 
